@@ -7,7 +7,7 @@ def bwa_index(fa, amb, ann, bwt, pac, sa):
     options = {
         'cores': 8,
         'memory': '16g',
-        'walltime': '12:00:00'
+        'walltime': '48:00:00'
     }
     spec = '''
 bwa index {fa}
@@ -27,9 +27,9 @@ def bwa_map(fa, fq1, fq2, output):
               '{}.sa'.format(fa)]
     outputs = [output]
     options = {
-        'cores': 8,
+        'cores': 12,
         'memory': '16g',
-        'walltime': '12:00:00'
+        'walltime': '96:00:00'
     }
     spec = '''
 bwa mem {fa} {fq1} {fq2} | samtools view -Sb > {output}
@@ -44,9 +44,9 @@ def samtools_sort(mapped, sorted_):
     inputs = [mapped]
     outputs = [sorted_]
     options = {
-        'cores': 4,
+        'cores': 8,
         'memory': '8g',
-        'walltime': '12:00:00'
+        'walltime': '96:00:00'
     }
     spec = '''
 samtools sort {mapped} > {sorted_}
@@ -63,7 +63,7 @@ def samtools_index(bam, bai):
     options = {
         'cores': 4,
         'memory': '8g',
-        'walltime': '12:00:00'
+        'walltime': '96:00:00'
     }
     spec = '''
 samtools index {bam} {bai}
@@ -82,7 +82,7 @@ def bam_list(bam, bl):
     options = {
         'cores': 1,
         'memory': '4g',
-        'walltime': '1:00:00'
+        'walltime': '48:00:00'
     }
     spec = '''
 ls results/sorted*.bam > {bl}
@@ -97,9 +97,9 @@ def bcftools_call(fa, bamlist, output):
     inputs = [fa, bamlist]
     outputs = [output]
     options = {
-        'cores': 8,
+        'cores': 12,
         'memory': '16g',
-        'walltime': '12:00:00'
+        'walltime': '96:00:00'
     }
     spec = '''
 bcftools mpileup -Ou -f {fa} -b {bamlist} |
