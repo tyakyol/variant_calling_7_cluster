@@ -90,11 +90,13 @@ ls results/sorted*.bam > {bl}
     return inputs, outputs, options, spec
 
 
-def bcftools_call(fa, bamlist, output):
+def bcftools_call(fa, bamlist, bai, output):
     '''
     Template for variant calling.
     '''
     inputs = [fa, bamlist]
+    for b in bai:
+        inputs.append(b)
     outputs = [output]
     options = {
         'cores': 12,
