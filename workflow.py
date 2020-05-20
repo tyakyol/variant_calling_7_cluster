@@ -45,8 +45,8 @@ for i in range(len(files)):
                                          files[i][0][59:65])
                                      ))
 
-        bam_files.append('results/sorted_{}.bam'.format(files[i][0][59:65])
-        bai_files.append('results/sorted_{}.bai'.format(files[i][0][59:65])
+        bam_files.append('results/sorted_{}.bam'.format(files[i][0][59:65]))
+        bai_files.append('results/sorted_{}.bai'.format(files[i][0][59:65]))
 
 gwf.target_from_template('bamList',
                          bam_list(bam=bam_files,
