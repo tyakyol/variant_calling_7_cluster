@@ -99,9 +99,9 @@ def bcftools_call(fa, bamlist, bai, output):
         inputs.append(b)
     outputs = [output]
     options = {
-        'cores': 12,
-        'memory': '16g',
-        'walltime': '96:00:00'
+        'cores': 16,
+        'memory': '32g',
+        'walltime': '240:00:00'
     }
     spec = '''
 bcftools mpileup -Ou -f {fa} -b {bamlist} |
