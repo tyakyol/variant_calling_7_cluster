@@ -57,5 +57,5 @@ gwf.target_from_template('bcftoolsCall',
                          bcftools_call(fa=rg,
                                        bamlist='results/bam_list.txt',
                                        bai=bai_files,
-                                       output='results/raw_variants.vcf'
+                                       output='results/20200531_raw_variants.vcf'
                                         ))
