@@ -59,3 +59,13 @@ gwf.target_from_template('bcftoolsCall',
                                        bai=bai_files,
                                        output='results/20200531_raw_variants.vcf'
                                         ))
+                                        
+gwf.target_from_template('bgzip',
+                          bgzip(vcf='results/20200531_raw_variants.vcf',
+                                gz='results/20200531_raw_variants.vcf.gz'
+                                ))
+
+gwf.target_from_template('tabix',
+                         tabix(gz='results/20200531_raw_variants.vcf.gz',
+                               tbi='results/20200531_raw_variants.vcf.gz.tbi'
+                               ))
