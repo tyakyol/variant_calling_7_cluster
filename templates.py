@@ -108,3 +108,39 @@ bcftools mpileup -Ou -f {fa} -b {bamlist} |
 bcftools call -mv > {output}
     '''.format(fa=fa, bamlist=bamlist, output=output)
     return inputs, outputs, options, spec
+
+
+def bgzip(vfc, gz):
+    '''
+    Template for compressing vcf file.
+    Necessary for query function from Bcftools.
+    '''
+    inputs = [vcf]
+    outputs = [gz]
+    options = {
+        'cores': 8,
+        'memory': '16g',
+        'walltime': '1:00:00'
+    }
+    spec = '''
+    bgzip {vcf}
+    '''.format(vcf=vcf)
+    return inputs, outputs, options, spec
+    
+
+def tabix(gz, tbi):
+    '''
+    Template for indexing vcf.gz file.
+    Necessary for query function from Bcftools.
+    '''
+    inputs = [gz]
+    outputs = [tbi]
+    options = {
+        'cores': 8,
+        'memory': '16g',
+        'walltime': '1:00:00'
+    }
+    spec = '''
+    tabix {gz}
+    '''.format(gz=gz)
+    return inputs, outputs, options, spec
